@@ -5,7 +5,7 @@ from vertexai.generative_models import GenerativeModel, Part
 
 # 1. 초기화
 vertexai.init(project="jnu-rise-edu-150", location="asia-northeast3")
-model = GenerativeModel("gemini-1.5-flash")
+model = GenerativeModel("gemini-2.5-flash")
 
 @functions_framework.http
 def analyze_with_gemini(request):
