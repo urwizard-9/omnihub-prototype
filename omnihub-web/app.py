@@ -35,7 +35,8 @@ for message in st.session_state.messages:
 # 사이드바: 파일 업로드
 with st.sidebar:
     st.header("📂 파일 업로드")
-    uploaded_file = st.file_uploader("분석할 파일을 선택하세요", type=["pdf", "png", "jpg", "docx"])
+    uploaded_file = st.file_uploader("분석할 파일을 선택하세요", # 수정 제안
+type=["pdf", "png", "jpg", "jpeg", "docx", "pptx", "xlsx", "csv", "txt", "mp3", "wav"])
     
     upload_clicked = st.button("🚀 업로드 및 분석 요청")
 
@@ -60,11 +61,12 @@ if uploaded_file is not None and upload_clicked:
                 
                 # [중요] 배포 후 생성된 Cloud Functions의 Trigger URL을 여기에 입력하세요.
                 # 예: "https://asia-northeast3-jnu-rise-edu-150.cloudfunctions.net/analyze_with_gemini"
-                FUNCTION_URL = "YOUR_CLOUD_FUNCTION_TRIGGER_URL_HERE" 
+                FUNCTION_URL = "" 
                 
                 payload = {
                     "bucket": BUCKET_NAME,
-                    "name": uploaded_file.name
+                    "name": uploaded_file.name,
+                    "contentType": uploaded_file.type
                 }
                 
                 try:

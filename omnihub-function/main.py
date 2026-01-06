@@ -27,7 +27,8 @@ def analyze_with_gemini(request):
     try:
         # 2. Gemini에게 보낼 데이터 준비
         file_uri = f"gs://{bucket_name}/{file_name}"
-        file_part = Part.from_uri(mime_type="application/pdf", uri=file_uri)
+        mime_type = request_json.get("contentType", "application/pdf")
+        file_part = Part.from_uri(mime_type=mime_type, uri=file_uri)
         
         # 3. 분석 요청
         prompt = "이 파일의 핵심 내용을 요약하고 인사이트를 추출해줘."
