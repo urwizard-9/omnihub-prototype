@@ -1,0 +1,18 @@
+steps:
+  # 1. Docker 이미지 빌드 (이름을 omnihub-prototype-app으로 통일)
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/omnihub-prototype/omnihub-prototype-app:latest'
+      - '.'
+
+  # 2. Artifact Registry로 이미지 푸시 (빌드한 이름과 동일하게 설정)
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/omnihub-prototype/omnihub-prototype-app:latest'
+
+# 최종 이미지를 관리형 창고에 등록
+images:
+  - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/omnihub-prototype/omnihub-prototype-app:latest'

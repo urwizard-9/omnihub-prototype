@@ -1,0 +1,9 @@
+#cloud run
+streamlit
+google-cloud-storage
+requests
+
+#cloud function
+functions-framework==3.*
+google-cloud-storage
+google-cloud-aiplatform
